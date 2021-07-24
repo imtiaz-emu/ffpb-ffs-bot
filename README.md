@@ -22,7 +22,7 @@ FFS-BOT is a python selenium based script to go and fetch match data from [Fanta
 
 #### Implementation
 
-![Sample Player Stats of a Match](https://www.dropbox.com/s/bgcv76s52qr1ob8/playerStatsFFS.png?dl=0)
+![Sample Player Stats of a Match](https://i.ibb.co/YW6KGyn/player-Stats-FFS.png)
 
 - First login to FFS site using credentials from `.env` file. Then sleep for 3 seconds to load the webpage.
 - Next, we initialize every players data with empty `Hash/Dictionary`
