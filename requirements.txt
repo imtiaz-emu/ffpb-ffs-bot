@@ -1,0 +1,3 @@
+selenium==3.141.0
+python-dotenv==0.7.0
+ipython==7.25.0
