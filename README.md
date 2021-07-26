@@ -53,8 +53,7 @@ Initialize empty data dictionary:
 ```python
 def build_player_stats(page_source):
   ...... other codes
-  stats[player_name]['touches'], stats[player_name]['passes'], stats[player_name]['expected'], stats[player_name]['keeping'] = {}, {}, {}, {}
-  stats[player_name]['fantasy'] = {} # newly added empty dict/hash
+  categories = ['touches', 'passes', 'expected', 'keeping', 'assist_potential', 'goal_threat', 'fantasy'] # newly added dict key
   ...... other codes 
 ```
 

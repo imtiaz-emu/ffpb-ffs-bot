@@ -54,14 +54,15 @@ class FFS_BOT():
 
 
   def collect_page_data(self):
-    match_stats_url = 'https://members.fantasyfootballscout.co.uk/matches/{m_id}/'.format(m_id=self.match_id)
+    # match_stats_url = 'https://members.fantasyfootballscout.co.uk/matches/{m_id}/'.format(m_id=self.match_id)
     # The following is a sample match stats page collected and saved as html locally to extract data without hitting the ffs server
-    # match_stats_url = 'file:///Users/imtiaz/Etectra/work/ffs-ffpb/match_stats.html'
+    match_stats_url = 'file:///Users/imtiaz/Etectra/work/ffs-ffpb/match_stats.html'
     self.browser.get(match_stats_url)
     self.player_stats = build_player_stats(self.browser)
 
     try:
       self.extract_data_from_page()
+      self.player_stats = self.format_stats()
       result = json.dumps(self.player_stats)
       self.save_page_as_file(result, 'match_stats.json')
 
@@ -83,11 +84,15 @@ class FFS_BOT():
             break
 
 
-  def update_new_stats(self, player_name, new_stats):
+  def format_stats(self):
+    formatted_stats = []
+
     for player_stat in self.player_stats:
-      if list(player_stat.keys())[0] == player_name:
-        player_stat[player_name] = new_stats
-        break
+      player_name = list(player_stat.keys())[0]
+      player_stats_data = list(player_stat.values())[0]
+      formatted_stats.append({'Player': player_name, 'Stats': player_stats_data})
+
+    return formatted_stats
 
   def chrome_driver_options(self):
     chrome_options = webdriver.ChromeOptions()
@@ -105,7 +110,7 @@ class FFS_BOT():
       f.write(data)
 
 
-bot = FFS_BOT(sys.argv[1])
-bot.login_to_ffs()
-sleep(3)
+bot = FFS_BOT('2128665')
+# bot.login_to_ffs()
+# sleep(3)
 bot.collect_page_data()
