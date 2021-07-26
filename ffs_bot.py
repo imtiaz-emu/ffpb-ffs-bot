@@ -54,9 +54,9 @@ class FFS_BOT():
 
 
   def collect_page_data(self):
-    # match_stats_url = 'https://members.fantasyfootballscout.co.uk/matches/{m_id}/'.format(m_id=self.match_id)
+    match_stats_url = 'https://members.fantasyfootballscout.co.uk/matches/{m_id}/'.format(m_id=self.match_id)
     # The following is a sample match stats page collected and saved as html locally to extract data without hitting the ffs server
-    match_stats_url = 'file:///Users/imtiaz/Etectra/work/ffs-ffpb/match_stats.html'
+    # match_stats_url = 'file:///Users/imtiaz/Etectra/work/ffs-ffpb/match_stats.html'
     self.browser.get(match_stats_url)
     self.player_stats = build_player_stats(self.browser)
 
@@ -110,7 +110,7 @@ class FFS_BOT():
       f.write(data)
 
 
-bot = FFS_BOT('2128665')
-# bot.login_to_ffs()
-# sleep(3)
+bot = FFS_BOT(sys.argv[1])
+bot.login_to_ffs()
+sleep(3)
 bot.collect_page_data()
